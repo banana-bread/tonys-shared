@@ -17,7 +17,7 @@ export * from './lib/http-adapter.service';
 export * from './lib/shared.module';
 ```
 
-#### 3. In **/dist/shared** start local server
+#### 3. Start local server.  Makes the package available on localhost
 ```bash
 $ verdaccio
 ``` 
