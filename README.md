@@ -17,19 +17,29 @@ export * from './lib/http-adapter.service';
 export * from './lib/shared.module';
 ```
 
-#### 3. Start local server.  Makes the package available on localhost
+#### 3. Install verdaccio globally
+```
+npm i -g verdaccio
+```
+
+#### 4. Auth with local npm
+```
+npm adduser --registry http://localhost:4873
+```
+
+#### 5. Start local server.  Makes the package available on localhost
 ```bash
 verdaccio
 ``` 
-#### 4. Publish package to local npm registry
+#### 6. Publish package to local npm registry
 ```bash
 npm run sharedbuild
 ```
-#### 5. Within consuming project
+#### 7. Within consuming project
 ```
 npm i @tonys/shared --registry http://localhost:4873/
 ```
-#### 6. Within consuming project **app.modue.ts**
+#### 8. Within consuming project **app.modue.ts**
 ```js
 import { TonysSharedModule } from '@tonys/shared';
 
