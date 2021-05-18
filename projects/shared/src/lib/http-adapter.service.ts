@@ -7,13 +7,25 @@ type httpMethods = 'GET'|'POST'|'PUT'|'PATCH'|'DELETE';
 export class HttpAdapter {
   // TODO: make this an env variable
   private readonly API_URL: string = 'http://localhost:89'
-  private _path: string = '';
-  private _queries: string = '';
-  private _params: string[] = [];
+  private _path = '';
+  private _queries = '';
   private _data: Object = {};
-  private _headers: [] = []; 
+  private _companyId = '';
+  private _isWithCompany = false;
+  // private _params: string[] = [];
+  // private _headers: [] = []; 
 
   constructor(private _http: HttpClient) {}
+
+
+  withCompany(id: string): this
+  {
+    this._companyId = id;
+    this._isWithCompany = true;
+
+    return this;
+  }
+
 
   path(path: string): this 
   {
@@ -85,7 +97,9 @@ export class HttpAdapter {
 
   private generateUrl(): string 
   {
-    return `${this.API_URL}${this._path}${this._queries}`;
+    return this._isWithCompany
+      ? `${this.API_URL}/locations/${this._companyId}${this._path}${this._queries}`
+      : `${this.API_URL}${this._path}${this._queries}`;
   }
 
   private sendRequest(method: httpMethods): Promise<any> 
@@ -93,19 +107,21 @@ export class HttpAdapter {
     // Necessary steps when dealing with angular service singleton
     const url = this.generateUrl();
     const data = this._data;
-    this.clear();
+    this._reset();
   
     return this._http.request(method, url, {
       body: data
     }).toPromise()
   }
 
-  clear()  
+  private _reset(): void  
   {
     this._path = '';
     this._queries = '';
-    this._params = [];
     this._data = {};
-    this._headers = []; 
+    this._isWithCompany = false;
+    this._companyId = '';
+    // this._params = [];
+    // this._headers = []; 
   }
 }
