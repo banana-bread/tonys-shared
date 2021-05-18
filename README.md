@@ -19,15 +19,15 @@ export * from './lib/shared.module';
 
 #### 3. Start local server.  Makes the package available on localhost
 ```bash
-$ verdaccio
+verdaccio
 ``` 
 #### 4. Publish package to local npm registry
 ```bash
-$ npm run sharedbuild
+npm run sharedbuild
 ```
 #### 5. Within consuming project
 ```
-$ npm i @tonys/shared --registry http://localhost:4873/
+npm i @tonys/shared --registry http://localhost:4873/
 ```
 #### 6. Within consuming project **app.modue.ts**
 ```js
