@@ -9,6 +9,7 @@ import { SnackbarNotificationService } from './snackbar-notification-service/sna
 import { SnackbarNotificationComponent } from './snackbar-notification-service/snackbar-notification.component';
 import { AppDurationPipe } from './pipes/duration.pipe';
 import { AppCurrencyPipe } from './pipes/currency.pipe';
+import { AuthInterceptor } from './auth-interceptor.serice';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ export class TonysSharedModule {
         HttpAdapter,
         JwtService, 
         SnackbarNotificationService,
+        AuthInterceptor,
       ]
     }
   }
