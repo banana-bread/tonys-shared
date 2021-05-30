@@ -6,7 +6,7 @@ import { SnackbarNotificationComponent } from './snackbar-notification.component
 @Injectable()
 export class SnackbarNotificationService {
     horizontalPosition: MatSnackBarHorizontalPosition = 'center'; 
-    verticalPosition: MatSnackBarVerticalPosition = 'top';
+    verticalPosition: MatSnackBarVerticalPosition = 'bottom';
 
     constructor(private snackBar: MatSnackBar) { }
 
