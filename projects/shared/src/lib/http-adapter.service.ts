@@ -95,6 +95,12 @@ export class HttpAdapter {
     return this.sendRequest('DELETE');
   }
 
+  raw(url: string, method: httpMethods): Promise<any>
+  {
+    return this._http.request(method, url)
+      .toPromise();
+  }
+
   private generateUrl(): string 
   {
     return this._isWithCompany
