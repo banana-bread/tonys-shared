@@ -53,7 +53,7 @@ export class JwtService {
   removeToken(): void 
   {
     localStorage.removeItem('access_token');
-    localStorage.removeItem('expires_in');
+    localStorage.removeItem('expires_at');
     localStorage.removeItem('refresh_token');
     localStorage.removeItem('token_type');
   }

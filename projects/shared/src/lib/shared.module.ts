@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { CommonModule, DecimalPipe } from '@angular/common';
 import { HttpAdapter } from './http-adapter.service';
@@ -29,11 +29,12 @@ import { AuthInterceptor } from './auth-interceptor.serice';
   ]
 })
 export class TonysSharedModule { 
-  static forRoot() {
+  static forRoot(apiUrl: string): ModuleWithProviders<TonysSharedModule> {
     return {
       ngModule: TonysSharedModule,
       providers: [ 
         HttpAdapter,
+        { provide: 'apiUrl', useValue: apiUrl },
         JwtService, 
         SnackbarNotificationService,
         AuthInterceptor,

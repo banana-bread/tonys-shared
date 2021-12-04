@@ -1,12 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
 type httpMethods = 'GET'|'POST'|'PUT'|'PATCH'|'DELETE';
 
 @Injectable()
 export class HttpAdapter {
-  // TODO: make this an env variable
-  private readonly API_URL: string = 'http://localhost:89'
   private _path = '';
   private _queries = '';
   private _data: Object = {};
@@ -15,7 +13,10 @@ export class HttpAdapter {
   // private _params: string[] = [];
   // private _headers: [] = []; 
 
-  constructor(private _http: HttpClient) {}
+  constructor(
+    @Inject('apiUrl') private _apiUrl: string,
+    private _http: HttpClient
+  ) {}
 
 
   withCompany(id: string): this
@@ -104,8 +105,8 @@ export class HttpAdapter {
   private generateUrl(): string 
   {
     return this._isWithCompany
-      ? `${this.API_URL}/locations/${this._companyId}${this._path}${this._queries}`
-      : `${this.API_URL}${this._path}${this._queries}`;
+      ? `${this._apiUrl}/locations/${this._companyId}${this._path}${this._queries}`
+      : `${this._apiUrl}${this._path}${this._queries}`;
   }
 
   private sendRequest(method: httpMethods): Promise<any> 
