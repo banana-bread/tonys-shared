@@ -1,6 +1,6 @@
 {
-  "name": "@tonys/shared",
-  "version": "0.0.27",
+  "name": "@tonys-barbers/shared",
+  "version": "0.0.29",
   "peerDependencies": {
     "@angular/common": "^11.1.2",
     "@angular/core": "^11.1.2"
